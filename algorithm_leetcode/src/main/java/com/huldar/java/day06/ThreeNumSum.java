@@ -29,6 +29,7 @@ public class ThreeNumSum {
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
+            //双指针
             int left = i + 1;
             int right = length - 1;
             while (left < right) {
@@ -53,7 +54,5 @@ public class ThreeNumSum {
             }
         }
         return result;
-
-
     }
 }
