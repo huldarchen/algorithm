@@ -145,24 +145,14 @@ public class BinarySearchAlgorithm {
         //
         int left = 0, right = length - 1;
         while (left < right) {
-            int mid = left + (right - left) >>> 1;
-            if (nums[mid] > nums[right]) {
-                if (nums[left] <= target && target <= nums[mid]) {
-                    right = mid;
-                } else {
-                    left = mid + 1;
-                }
+            int mid = left + ((right - left) >> 1);
+            if ((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])) {
+                left = mid + 1;
             } else {
-                if (nums[mid] < target && target <= nums[right]) {
-                    left = mid + 1;
-                } else {
-                    right = mid;
-                }
+                right = mid;
             }
         }
-        if (nums[left] == target) {
-            res = left;
-        }
-        return res;
+
+        return left == right && nums[left] == target ? left : -1;
     }
 }

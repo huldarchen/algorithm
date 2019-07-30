@@ -42,7 +42,7 @@ class BinarySearchAlgorithmTest {
     @Test
     void searchRevolveArraysTest() {
         int[] nums = {4, 5, 6, 7, 0, 1, 2};
-        int target = 3;
-        assertEquals(-1, binarySearchAlgorithm.searchRevolveArrays(nums, target));
+        int target = 4;
+        assertEquals(0, binarySearchAlgorithm.searchRevolveArrays(nums, target));
     }
 }
