@@ -90,5 +90,79 @@ public class BinarySearchAlgorithm {
         return 0.0;
     }
 
+    /**
+     * NO.29 两数相除 不使用除法
+     *
+     * @param dividend 被除数
+     * @param divisor  除数
+     * @return 结果
+     */
+    public int divide(int dividend, int divisor) {
 
+        //符号位 异或 相同则false 不同则true
+        int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+        //将int转换成long防止在左移的时候超过int的范围
+        long m = Math.abs((long) dividend);
+        long n = Math.abs((long) divisor);
+
+        long res = 0;
+        //二分+位运算
+        while (m >= n) {
+
+            long t = n, p = 1;
+            while (m >= (t << 1)) {
+                p <<= 1;
+                t <<= 1;
+            }
+            res += p;
+            m -= t;
+        }
+        if (res > Integer.MAX_VALUE && sign > 0 || res < Integer.MIN_VALUE && sign < 0) {
+            res = Integer.MAX_VALUE;
+        }
+        return (int) (sign > 0 ? res : -res);
+    }
+
+    /**
+     * NO.33 搜索旋转排序数组
+     * 时间复杂度必须是 O(log n) 级别。
+     *
+     * @param nums   数组
+     * @param target 目标值
+     * @return 目标值在数组中的位置, 不在数组中返回-1
+     */
+    public int searchRevolveArrays(int[] nums, int target) {
+        /*
+        旋转排序数组就是部分有序的数组(原数组整体分为两个有序的数组)
+
+         */
+        int res = -1;
+        //特殊情况处理
+        int length = nums.length;
+        if (length == 0) {
+            return res;
+        }
+        //
+        int left = 0, right = length - 1;
+        while (left < right) {
+            int mid = left + (right - left) >>> 1;
+            if (nums[mid] > nums[right]) {
+                if (nums[left] <= target && target <= nums[mid]) {
+                    right = mid;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+        }
+        if (nums[left] == target) {
+            res = left;
+        }
+        return res;
+    }
 }

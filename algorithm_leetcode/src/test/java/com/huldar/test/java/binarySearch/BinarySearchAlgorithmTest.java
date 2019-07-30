@@ -26,5 +26,23 @@ class BinarySearchAlgorithmTest {
 
     }
 
+    /**
+     * NO.29 两数相除
+     */
+    @Test
+    void divideTest() {
+        int dividend = -2147483648;
+        int divisor = 1;
+        assertEquals(-2147483648, binarySearchAlgorithm.divide(dividend, divisor));
+    }
 
+    /**
+     * NO.33 旋转数组查询
+     */
+    @Test
+    void searchRevolveArraysTest() {
+        int[] nums = {4, 5, 6, 7, 0, 1, 2};
+        int target = 3;
+        assertEquals(-1, binarySearchAlgorithm.searchRevolveArrays(nums, target));
+    }
 }
